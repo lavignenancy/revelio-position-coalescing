@@ -15,7 +15,6 @@ NYU = "linkedin.com/company/nyu"
 
 
 def run(snapshots):
-    """snapshots: {date: [(company, url, title, location, description, start, end), ...]}"""
     snaps = []
     for observed in sorted(snapshots):
         rows = [
@@ -254,3 +253,33 @@ def test_same_day_duplicates_become_one_position():  # P7: 154,506 cases
     )
     assert len(out[D(2025, 1, 1)]) == 1
     assert out[D(2025, 1, 1)][0][8] == D(2024, 6, 1)  # the end date is kept
+
+
+def test_same_url_different_title_no_dates_stays_separate():
+    out = run(
+        {
+            D(2025, 1, 1): [
+                (
+                    "Acme",
+                    "linkedin.com/company/acme",
+                    "Engineer",
+                    None,
+                    None,
+                    None,
+                    None,
+                )
+            ],
+            D(2025, 2, 1): [
+                (
+                    "Acme",
+                    "linkedin.com/company/acme",
+                    "Sales Manager",
+                    None,
+                    None,
+                    None,
+                    None,
+                )
+            ],
+        }
+    )
+    assert len(out[D(2025, 2, 1)]) == 2

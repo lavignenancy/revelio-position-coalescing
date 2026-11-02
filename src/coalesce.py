@@ -268,7 +268,7 @@ def title_points(row, old):
     # I found 55,857 cases where the same company and start date had different titles. This suggests that titles can change
     # between observations without necessarily being a new job. I decided not to penalize different titles automatically.
     # Instead, I give 0 points and use the company and employment dates to help determine whether the positions match.
-    return 0
+    return -1
 
 
 def match_score(row, position):
