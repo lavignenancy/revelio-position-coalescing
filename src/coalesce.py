@@ -254,7 +254,7 @@ def title_points(row, old):
 
     if a is None or b is None:
         # If either title is missing, I give 0 points because there isn't enough information to compare them. I don't reward or penalize missing information.
-        return 0
+        return 1
 
     if a == b:
         # Both titles match exactly, so I add 2 points.
