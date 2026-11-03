@@ -18,8 +18,8 @@ I will need to examine these records and compare their dates with the observatio
 
 ## D5: Matching observations that belong to the same position
 
-I will need to compare different combinations of fields to determine which ones provide the strongest evidence that two observations represent the same position. I am considering a scoring system that uses company names, URLs, titles, dates, and other available information. I will also need to test cases where a person has held multiple positions at the same company to avoid incorrectly merging separate jobs.
+I will need to compare different combinations of fields to determine which ones provide the strongest evidence that two observations represent the same position. I am considering a scoring system that uses company names, URLs, titles, dates, and other available information.And I will also need to test cases where a person has held multiple positions at the same company to avoid incorrectly merging separate jobs.
 
 ## D6: Comparing employment dates
-\
+
 I will need to calculate how many start and end dates follow this pattern. If most dates use the first day of the month, I will consider comparing dates by month and year. This should help me avoid treating the same position as different jobs simply because of differences in date precision.

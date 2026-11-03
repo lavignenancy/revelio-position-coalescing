@@ -363,6 +363,8 @@ def coalesce_user(user_id, snapshots, stats):
 
         for i, r in enumerate(rows):
             p = positions[assigned[i]]
+            if "assignments" in stats:  # only used by tools/label.py
+                stats["assignments"].append((observed, r, p["id"]))
             for f in FIELDS:
                 if r[f] is not None:
                     p["values"][f] = r[f]
@@ -456,7 +458,8 @@ def process_bucket(bucket_dir, out_path):
         SELECT user_id, observed_ts, company_raw, company_website, title_raw, location_raw,
                description, startdate, enddate
         FROM read_parquet('{bucket_dir}/*.parquet')
-        ORDER BY user_id, observed_ts, order_in_profile""")
+        ORDER BY user_id, observed_ts, order_in_profile, company_raw, title_raw,
+                 startdate, enddate, description""")
     stats = {"kept": 0, "dropped": 0}
     out = []
     user, snaps, snap_date, snap_rows = None, [], None, []
